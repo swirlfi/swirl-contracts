@@ -17,7 +17,7 @@ import "./SwirlToken.sol";
 // distributed and the community can show to govern itself.
 //
 // Have fun reading it. Hopefully it's bug-free. God bless.
-contract MasterChefV2 is Ownable, ReentrancyGuard {
+contract MasterChef is Ownable, ReentrancyGuard {
     using SafeMath for uint256;
     using SafeBEP20 for IBEP20;
 
@@ -100,7 +100,7 @@ contract MasterChefV2 is Ownable, ReentrancyGuard {
 
     // Add a new lp to the pool. Can only be called by the owner.
     function add(uint256 _allocPoint, IBEP20 _lpToken, uint16 _depositFeeBP, bool _withUpdate) public onlyOwner nonDuplicated(_lpToken) {
-        require(_depositFeeBP <= 10000, "add: invalid deposit fee basis points");
+        require(_depositFeeBP <= 200, "add: invalid deposit fee basis points");
         if (_withUpdate) {
             massUpdatePools();
         }
@@ -118,7 +118,7 @@ contract MasterChefV2 is Ownable, ReentrancyGuard {
 
     // Update the given pool's swirl allocation point and deposit fee. Can only be called by the owner.
     function set(uint256 _pid, uint256 _allocPoint, uint16 _depositFeeBP, bool _withUpdate) public onlyOwner {
-        require(_depositFeeBP <= 10000, "set: invalid deposit fee basis points");
+        require(_depositFeeBP <= 200, "set: invalid deposit fee basis points");
         if (_withUpdate) {
             massUpdatePools();
         }
